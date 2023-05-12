@@ -1,7 +1,7 @@
 # dingdong
 A minimal but nerdy setup to ring a doorbell: a webhook that plays an audio file.
 
-This Docker image is based on the latest version of Ubuntu and comes pre-installed with **webhook**, **sox**, and **libsox-fmt-all**. The working directory is set to `/etc/webhook` and the webhook **port 9000** is exposed. When the container is started, it will run the webhook server with the specified hooks file `hooks.json` in verbose mode.
+This Docker image is based on the latest version of Ubuntu and comes pre-installed with `webhook`, `sox`, and `libsox-fmt-all`. The working directory is set to `/etc/webhook` and the webhook `port 9000` is exposed. When the container is started, it will run the webhook server with the specified hooks file `hooks.json` in verbose mode.
 
 The image is used to run a container that hosts a webhook. When pulled, the webhook runs a script that plays an MP3 file. The use case for this image is to play a doorbell sound when the doorbell in a house is rang.
 
@@ -34,7 +34,7 @@ git clone https://github.com/knutale/dingdong.git
 ```
    
 And build the Docker image:
-```
+``` console
 docker build -t dingdong .
 ```
 
