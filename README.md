@@ -81,7 +81,7 @@ docker run --privileged -p 9000:9000 --device /dev/snd -v dingdong_data:/etc/web
 ```
 This will start a container and map port 9000 of the host to port 9000 of the container, allowing you to access the webhook server from outside the container. It also mounts the `/dev/snd` device and the `dingdong_data` volume.
 
-You can also use Docker Compose to run the container. Here’s an example `docker-compose.yml` file:
+You can also use **Docker Compose** to run the container. Here’s an example `docker-compose.yml` file:
 ``` yaml
 version: '3'
 services:
@@ -97,5 +97,5 @@ services:
 ```
 To start the container using Docker Compose, run docker-compose up.
 
-# License
+## License
 This project is licensed under GNU GPL license.
