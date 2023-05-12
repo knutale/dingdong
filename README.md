@@ -29,7 +29,7 @@ Here’s an example `hooks.json` file:
 ### play_audio.sh
 The `play_audio.sh` script contains the command to play the MP3 file using `sox`. In this example, it plays an MP3 file located at `/etc/webhook/chime.mp3` with a volume of 5.0.
 
-Here’s an example play_audio.sh script:
+Here’s an example `play_audio.sh` script:
 ``` bash
 #!/bin/bash
 
