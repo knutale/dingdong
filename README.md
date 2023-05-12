@@ -37,6 +37,12 @@ And build the Docker image:
 ``` console
 docker build -t dingdong .
 ```
+## Installation
+The latest image can be pulled from Docker Hub:
+
+```console
+docker pull knutaleee/dingdong
+```
 
 ## Setup
 The container that runs the image mounts the `/dev/snd` device, as well as a volume `dingdong_data` which is mounted to `/etc/webhook` in the container.
