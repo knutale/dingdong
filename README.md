@@ -8,6 +8,36 @@ The image is used to run a container that hosts a webhook. When pulled, the webh
 ## Example
 As an example, a physical doorbell is mounted at the entrance of a house. The doorbell is wired to a Loxone Home Automation system, which is connected to node-red. Whenever the doorbell switch is pressed, Loxone triggers a flow in node-red. This flow then pulls the webhook and plays the MP3 file.
 
+## Build
+The image is created using the following Dockerfile:
+``` yaml
+FROM ubuntu:latest
+
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y webhook sox libsox-fmt-all
+
+# Set the working directory
+WORKDIR /etc/webhook
+
+# Expose the webhook port
+EXPOSE 9000
+
+# Start the webhook server
+CMD ["webhook", "-hooks", "hooks.json", "-verbose"]
+```
+
+To build the image, clone the repository:
+
+``` console
+git clone https://github.com/knutale/dingdong.git
+```
+   
+And build the Docker image:
+```
+docker build -t dingdong .
+```
+
 ## Setup
 The container that runs the image mounts the `/dev/snd` device, as well as a volume `dingdong_data` which is mounted to `/etc/webhook` in the container.
 
@@ -41,7 +71,7 @@ play -v 5.0 /etc/webhook/chime.mp3
 To run a container with this image, use the following command:
 
 ``` console
-docker run -p 9000:9000 --device /dev/snd -v dingdong_data:/etc/webhook knutalee/dingdong:latest
+docker run --privileged -p 9000:9000 --device /dev/snd -v dingdong_data:/etc/webhook knutalee/dingdong:latest
 ```
 This will start a container and map port 9000 of the host to port 9000 of the container, allowing you to access the webhook server from outside the container. It also mounts the `/dev/snd` device and the `dingdong_data` volume.
 
@@ -57,6 +87,7 @@ services:
       - /dev/snd
     volumes:
       - dingdong_data:/etc/webhook
+    privileged: true
 ```
 To start the container using Docker Compose, run docker-compose up.
 
