@@ -1,0 +1,7 @@
+[
+  {
+    "id": "dingdong",
+    "execute-command": "/etc/webhook/play_audio.sh",
+    "command-working-directory": "/etc/webhook/"
+  }
+]
